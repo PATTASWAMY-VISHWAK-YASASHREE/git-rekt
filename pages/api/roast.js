@@ -35,8 +35,8 @@ export default async function handler(req, res) {
     // Fetch recent activity
     const events = await fetchUserEvents(username, 30);
     
-    // Generate the roast
-    const roastData = generateRoast(userData, repos, allCommits, events);
+    // Generate the roast (now async to support Gemini)
+    const roastData = await generateRoast(userData, repos, allCommits, events);
     
     // Return the result
     res.status(200).json({
