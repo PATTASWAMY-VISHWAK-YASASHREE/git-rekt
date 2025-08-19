@@ -5,7 +5,6 @@ import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const [username, setUsername] = useState('');
-  const [apiKey, setApiKey] = useState('');
   const [roast, setRoast] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,9 +20,7 @@ export default function Home() {
     try {
       const url = new URL('/api/roast', window.location.origin);
       url.searchParams.append('username', username);
-      if (apiKey.trim()) {
-        url.searchParams.append('apiKey', apiKey.trim());
-      }
+  // API key no longer accepted from client; server uses its own env var
       
       const response = await fetch(url);
       const data = await response.json();
@@ -67,17 +64,8 @@ export default function Home() {
             className={styles.input}
             disabled={loading}
           />
-          <input
-            type="password"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder="Google Gemini API Key (optional - for AI roasts)"
-            className={styles.input}
-            disabled={loading}
-          />
           <p className={styles.apiKeyNote}>
-            💡 Want AI-powered roasts? Add your <a href="https://makersuite.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Gemini API key</a> above. 
-            Without it, you&apos;ll get our classic hardcoded roasts (still brutal! 🔥)
+            � AI roasts enabled by site owner. Your requests never see the API key.
           </p>
           <button 
             type="submit" 

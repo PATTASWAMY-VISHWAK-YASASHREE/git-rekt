@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { username, apiKey } = req.query;
+  const { username } = req.query; // API key is now server-managed via environment variable only
 
   if (!username) {
     return res.status(400).json({ error: 'Username is required' });
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     const events = await fetchUserEvents(username, 30);
     
     // Generate the roast (now async to support Gemini)
-    const roastData = await generateRoast(userData, repos, allCommits, events, apiKey);
+  const roastData = await generateRoast(userData, repos, allCommits, events);
     
     // Return the result
     res.status(200).json({
