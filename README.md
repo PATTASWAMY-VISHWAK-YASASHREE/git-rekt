@@ -8,6 +8,7 @@ A web app that takes a GitHub username and roasts them based on their contributi
 - 📝 **Commit Message Roasting**: Identifies generic messages, emoji overuse, and poor formatting
 - 📊 **Repository Quality Check**: Evaluates repo naming, descriptions, and maintenance
 - 🎯 **Activity Pattern Analysis**: Looks at coding habits and contribution patterns
+- 🤖 **AI-Powered Roasts**: Optional Google Gemini integration for more creative and personalized roasts
 - 🎨 **Beautiful UI**: Modern, responsive design with smooth animations
 
 ## Getting Started
@@ -23,12 +24,18 @@ A web app that takes a GitHub username and roasts them based on their contributi
    npm install
    ```
 
-3. **Run the development server**
+3. **Set up environment variables (optional)**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local and add your Google Gemini API key for enhanced roasts
+   ```
+
+4. **Run the development server**
    ```bash
    npm run dev
    ```
 
-4. **Open your browser**
+5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## How It Works
@@ -45,7 +52,9 @@ A web app that takes a GitHub username and roasts them based on their contributi
    - Poor repository naming conventions
    - Inconsistent contribution patterns
    - Profile completeness issues
-4. Generates personalized roasts based on the analysis
+4. Generates personalized roasts:
+   - **With Gemini API**: Uses AI to create witty, context-aware roasts
+   - **Fallback**: Uses traditional pattern-based roasts if no API key provided
 
 ## Roasting Categories
 
@@ -78,6 +87,22 @@ A web app that takes a GitHub username and roasts them based on their contributi
 - **Styling**: CSS Modules
 - **API**: Next.js API Routes
 - **Data Source**: GitHub REST API
+- **AI Integration**: Google Gemini API (optional)
+
+## Configuration
+
+### Google Gemini API (Optional)
+
+To enable AI-powered roasts, you'll need a Google Gemini API key:
+
+1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Create a new API key
+3. Add it to your `.env.local` file:
+   ```
+   GEMINI_API_KEY=your_api_key_here
+   ```
+
+If no API key is provided, the app will use traditional hardcoded roasts as fallback.
 
 ## API Usage
 
