@@ -8,7 +8,11 @@
 [build.environment]
   # No GEMINI_API_KEY required - users provide their own via the UI
   NODE_VERSION = "18"
-  NPM_FLAGS = "--version"
+  # IMPORTANT: Do NOT set NPM_FLAGS to something like '--version' or the install step
+  # on Netlify will effectively be skipped (e.g. it would run `npm install --version`).
+  # That prevented node_modules (and thus 'next') from being installed and caused
+  # the error: 'sh: 1: next: not found'. Leave NPM_FLAGS unset unless you need
+  # safe flags like '--no-audit --no-fund'.
 
 # Form handling (if needed in future)
 [build.processing]
