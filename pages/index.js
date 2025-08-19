@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -97,10 +98,12 @@ export default function Home() {
         {roast && (
           <div className={styles.roastContainer}>
             <div className={styles.userInfo}>
-              <img 
+              <Image 
                 src={roast.avatar_url} 
-                alt={`${roast.username}&apos;s avatar`}
+                alt={`${roast.username}'s avatar`}
                 className={styles.avatar}
+                width={80}
+                height={80}
               />
               <h2>@{roast.username}</h2>
               <p>{roast.name || 'Anonymous Developer'}</p>
