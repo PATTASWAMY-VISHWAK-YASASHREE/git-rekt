@@ -90,6 +90,23 @@
   transform: none;
 }
 
+.apiKeyNote {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+.apiKeyNote a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.apiKeyNote a:hover {
+  text-decoration: underline;
+}
+
 .error {
   background: rgba(255, 107, 107, 0.9);
   color: white;

@@ -41,18 +41,19 @@ A web app that takes a GitHub username and roasts them based on their contributi
 ## How It Works
 
 1. Enter a GitHub username
-2. The app fetches public data from GitHub's API:
+2. **Optional**: Add your own Google Gemini API key for AI-powered roasts
+3. The app fetches public data from GitHub's API:
    - User profile information
    - Recent repositories
    - Commit messages from recent repos
    - Public activity events
-3. Analyzes the data for roasting opportunities:
+4. Analyzes the data for roasting opportunities:
    - Generic commit messages ("fix", "update", etc.)
    - Emoji overuse in commits
    - Poor repository naming conventions
    - Inconsistent contribution patterns
    - Profile completeness issues
-4. Generates personalized roasts:
+5. Generates personalized roasts:
    - **With Gemini API**: Uses AI to create witty, context-aware roasts
    - **Fallback**: Uses traditional pattern-based roasts if no API key provided
 
@@ -93,7 +94,10 @@ A web app that takes a GitHub username and roasts them based on their contributi
 
 ### Google Gemini API (Optional)
 
-To enable AI-powered roasts, you'll need a Google Gemini API key:
+The app supports two ways to use AI-powered roasts:
+
+#### For Development/Self-hosting
+Add your API key to the environment variables:
 
 1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
 2. Create a new API key
@@ -102,7 +106,15 @@ To enable AI-powered roasts, you'll need a Google Gemini API key:
    GEMINI_API_KEY=your_api_key_here
    ```
 
-If no API key is provided, the app will use traditional hardcoded roasts as fallback.
+#### For Public Deployment (Netlify/Vercel)
+Users can provide their own API key through the web interface:
+
+1. Deploy the app without any API key
+2. Users enter their GitHub username
+3. Users optionally add their own Gemini API key for enhanced roasts
+4. The API key is used only for that session and not stored
+
+If no API key is provided (either via environment or user input), the app will use traditional hardcoded roasts as fallback.
 
 ## API Usage
 
@@ -118,11 +130,31 @@ Feel free to contribute by:
 
 ## Deployment
 
-The app can be easily deployed to platforms like:
-- Vercel (recommended for Next.js)
-- Netlify
-- Railway
-- Heroku
+### Netlify (Recommended for public deployment)
+
+1. **Fork this repository** to your GitHub account
+
+2. **Connect to Netlify**:
+   - Go to [Netlify](https://netlify.com)
+   - Click "New site from Git"
+   - Connect your GitHub account and select the forked repository
+   - Netlify will automatically detect the Next.js configuration
+
+3. **Deploy**: 
+   - Build command: `npm run build`
+   - Publish directory: `.next`
+   - No environment variables needed - users provide their own API keys!
+
+4. **Done!** Your app will be live and users can optionally provide their own Gemini API keys for AI roasts.
+
+### Other Platforms
+
+The app can also be deployed to:
+- **Vercel**: Perfect for Next.js, automatic deployments
+- **Railway**: Good for containerized deployments
+- **Heroku**: Classic PaaS option
+
+For self-hosting or private deployment, you can set the `GEMINI_API_KEY` environment variable to provide a default API key.
 
 ## Disclaimer
 
