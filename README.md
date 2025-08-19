@@ -41,7 +41,7 @@ A web app that takes a GitHub username and roasts them based on their contributi
 ## How It Works
 
 1. Enter a GitHub username
-2. **Optional**: Add your own Google Gemini API key for AI-powered roasts
+2. (Site owner only) Server may have a Google Gemini API key configured; end users no longer supply keys.
 3. The app fetches public data from GitHub's API:
    - User profile information
    - Recent repositories
@@ -92,29 +92,19 @@ A web app that takes a GitHub username and roasts them based on their contributi
 
 ## Configuration
 
-### Google Gemini API (Optional)
+### Google Gemini API (Server-managed)
 
-The app supports two ways to use AI-powered roasts:
+AI-powered roasts are enabled solely via a server-side environment variable. End users cannot (and need not) provide their own keys.
 
-#### For Development/Self-hosting
-Add your API key to the environment variables:
-
-1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Create a new API key
-3. Add it to your `.env.local` file:
+1. Obtain an API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Set `GEMINI_API_KEY` in your deployment environment (e.g. Netlify UI > Site settings > Environment variables)
+3. (Optional) For local development create `.env.local` with:
    ```
    GEMINI_API_KEY=your_api_key_here
    ```
+4. Restart dev server. The frontend never receives this key; it stays on the server.
 
-#### For Public Deployment (Netlify/Vercel)
-Users can provide their own API key through the web interface:
-
-1. Deploy the app without any API key
-2. Users enter their GitHub username
-3. Users optionally add their own Gemini API key for enhanced roasts
-4. The API key is used only for that session and not stored
-
-If no API key is provided (either via environment or user input), the app will use traditional hardcoded roasts as fallback.
+If the key is absent, the app falls back to traditional pattern-based roasts.
 
 ## API Usage
 
@@ -143,7 +133,7 @@ Feel free to contribute by:
 3. **Deploy**: 
    - Build command: `npm run build`
    - Publish directory: `.next`
-   - No environment variables needed - users provide their own API keys!
+   - (Optional) Set `GEMINI_API_KEY` in environment to enable AI roasts globally.
 
 4. **Done!** Your app will be live and users can optionally provide their own Gemini API keys for AI roasts.
 
