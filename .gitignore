@@ -7,6 +7,10 @@ node_modules/
 .next/
 out/
 build/
+dist/
+
+# Netlify
+.netlify/
 
 # Environment variables
 .env
